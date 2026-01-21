@@ -1,0 +1,8 @@
+{
+  "id": "kailv-env-001",
+  "name": "Kailv Environment",
+  "values": [
+    {"key": "baseUrl", "value": "http://localhost:8080", "enabled": true},
+    {"key": "token", "value": "", "enabled": true}
+  ]
+}

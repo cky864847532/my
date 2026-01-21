@@ -1,0 +1,48 @@
+Your First API Call
+The DeepSeek API uses an API format compatible with OpenAI. By modifying the configuration, you can use the OpenAI SDK or softwares compatible with the OpenAI API to access the DeepSeek API.
+
+PARAM	VALUE
+base_url *       	https://api.deepseek.com
+api_key	apply for an API key
+* To be compatible with OpenAI, you can also use as the . But note that the here has NO relationship with the model's version.https://api.deepseek.com/v1base_urlv1
+
+* deepseek-chat and deepseek-reasoner are upgraded to DeepSeek-V3.2 now. is the non-thinking mode of DeepSeek-V3.2 and is the thinking mode of DeepSeek-V3.2.deepseek-chatdeepseek-reasoner
+
+Invoke The Chat API
+Once you have obtained an API key, you can access the DeepSeek API using the following example scripts. This is a non-stream example, you can set the parameter to to get stream response.streamtrue
+
+curl
+
+curl https://api.deepseek.com/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer ${DEEPSEEK_API_KEY}" \
+  -d '{
+        "model": "deepseek-chat",
+        "messages": [
+          {"role": "system", "content": "You are a helpful assistant."},
+          {"role": "user", "content": "Hello!"}
+        ],
+        "stream": false
+      }'
+
+nodejs
+
+// Please install OpenAI SDK first: `npm install openai`
+
+import OpenAI from "openai";
+
+const openai = new OpenAI({
+        baseURL: 'https://api.deepseek.com',
+        apiKey: process.env.DEEPSEEK_API_KEY,
+});
+
+async function main() {
+  const completion = await openai.chat.completions.create({
+    messages: [{ role: "system", content: "You are a helpful assistant." }],
+    model: "deepseek-chat",
+  });
+
+  console.log(completion.choices[0].message.content);
+}
+
+main();

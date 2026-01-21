@@ -1,0 +1,21 @@
+# General
+.DS_Store
+Thumbs.db
+
+# VS Code / IDE
+.vscode/
+.idea/
+*.iml
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/
+
+# Backend
+backend/target/
+backend/logs/
+
+# Env files
+.env
+.env.*

@@ -1,0 +1,181 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "台州凯绿化工 - 核心 API",
+    "version": "1.0.0",
+    "description": "基于 core_api.md 的 OpenAPI 规范（认证、客户、产品、订单、库存、统计、AI对话）。"
+  },
+  "servers": [
+    { "url": "http://localhost:8080" }
+  ],
+  "paths": {
+    "/api/auth/login": {
+      "post": {
+        "summary": "用户登录",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/AuthRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "登录成功，返回 token",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/AuthResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/refresh": {
+      "post": {
+        "summary": "刷新 Token",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "type": "object", "properties": { "refreshToken": { "type": "string" } } }
+            }
+          }
+        },
+        "responses": { "200": { "description": "刷新成功" } }
+      }
+    },
+    "/api/customers": {
+      "get": {
+        "summary": "客户列表",
+        "parameters": [
+          { "in": "query", "name": "page", "schema": { "type": "integer" } },
+          { "in": "query", "name": "size", "schema": { "type": "integer" } },
+          { "in": "query", "name": "name", "schema": { "type": "string" } },
+          { "in": "query", "name": "category", "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "客户列表",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "total": { "type": "integer" },
+                    "value": { "type": "array", "items": { "$ref": "#/components/schemas/Customer" } }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "新增客户",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CustomerCreate" }
+            }
+          }
+        },
+        "responses": { "201": { "description": "创建成功" } }
+      }
+    },
+    "/api/customers/{id}": {
+      "parameters": [ { "in": "path", "name": "id", "required": true, "schema": { "type": "integer" } } ],
+      "get": {
+        "summary": "获取客户详情",
+        "responses": { "200": { "description": "客户详情", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Customer" } } } } }
+      },
+      "put": {
+        "summary": "更新客户",
+        "requestBody": { "content": { "application/json": { "schema": { "$ref": "#/components/schemas/CustomerCreate" } } } },
+        "responses": { "200": { "description": "更新成功" } }
+      },
+      "delete": { "summary": "删除客户（建议软删除）", "responses": { "204": { "description": "已删除" } } }
+    },
+    "/api/customers/{id}/contacts": {
+      "get": {
+        "summary": "获取客户联系记录",
+        "parameters": [ { "in": "path", "name": "id", "required": true, "schema": { "type": "integer" } } ],
+        "responses": { "200": { "description": "联系记录列表" } }
+      },
+      "post": {
+        "summary": "新增联系记录",
+        "requestBody": { "required": true, "content": { "application/json": { "schema": { "type": "object", "properties": { "content": { "type": "string" }, "ownerId": { "type": "integer" } } } } } },
+        "responses": { "201": { "description": "创建成功" } }
+      }
+    },
+    "/api/products": {
+      "get": {
+        "summary": "产品列表",
+        "parameters": [ { "in": "query", "name": "category", "schema": { "type": "string" } }, { "in": "query", "name": "q", "schema": { "type": "string" } } ],
+        "responses": { "200": { "description": "产品列表", "content": { "application/json": { "schema": { "type": "object", "properties": { "value": { "type": "array", "items": { "$ref": "#/components/schemas/Product" } } } } } } }
+      },
+      "post": {
+        "summary": "新增产品",
+        "requestBody": { "required": true, "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ProductCreate" } } } },
+        "responses": { "201": { "description": "创建成功" } }
+      }
+    },
+    "/api/products/{id}": {
+      "parameters": [ { "in": "path", "name": "id", "required": true, "schema": { "type": "integer" } } ],
+      "get": { "summary": "产品详情", "responses": { "200": { "description": "产品详情", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Product" } } } } } ,
+      "put": { "summary": "更新产品", "requestBody": { "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ProductCreate" } } } }, "responses": { "200": { "description": "更新成功" } } }
+    },
+    "/api/products/{id}/price": {
+      "post": {
+        "summary": "调整价格",
+        "requestBody": { "required": true, "content": { "application/json": { "schema": { "type": "object", "properties": { "price": { "type": "number", "format": "double" } } } } } },
+        "responses": { "200": { "description": "已更新" } }
+      }
+    },
+    "/api/orders": {
+      "post": { "summary": "创建订单", "requestBody": { "required": true, "content": { "application/json": { "schema": { "$ref": "#/components/schemas/OrderCreate" } } } }, "responses": { "201": { "description": "订单创建" } } },
+      "get": { "summary": "订单列表", "responses": { "200": { "description": "订单列表" } } }
+    },
+    "/api/orders/{id}": {
+      "parameters": [ { "in": "path", "name": "id", "required": true, "schema": { "type": "integer" } } ],
+      "get": { "summary": "订单详情", "responses": { "200": { "description": "订单详情" } } }
+    },
+    "/api/orders/{id}/status": {
+      "put": { "summary": "更新订单状态", "requestBody": { "content": { "application/json": { "schema": { "type": "object", "properties": { "status": { "type": "string" }, "note": { "type": "string" } } } } } }, "responses": { "200": { "description": "状态已更新" } } }
+    },
+    "/api/inventory": { "get": { "summary": "库存列表", "responses": { "200": { "description": "库存列表" } } } },
+    "/api/inventory/{productId}": { "parameters": [ { "in": "path", "name": "productId", "required": true, "schema": { "type": "integer" } } ], "get": { "summary": "单品库存明细", "responses": { "200": { "description": "明细" } } } },
+    "/api/inventory/in": { "post": { "summary": "入库登记", "requestBody": { "required": true, "content": { "application/json": { "schema": { "$ref": "#/components/schemas/InventoryIn" } } } }, "responses": { "201": { "description": "已入库" } } } },
+    "/api/inventory/out": { "post": { "summary": "出库登记", "requestBody": { "required": true, "content": { "application/json": { "schema": { "$ref": "#/components/schemas/InventoryOut" } } } }, "responses": { "201": { "description": "已出库" } } } },
+    "/api/inventory/adjust": { "post": { "summary": "盘点调整", "requestBody": { "required": true, "content": { "application/json": { "schema": { "$ref": "#/components/schemas/InventoryAdjust" } } } }, "responses": { "200": { "description": "调整已记录" } } } },
+    "/api/inventory/alerts": { "get": { "summary": "库存预警", "responses": { "200": { "description": "预警列表" } } } },
+    "/api/stats/sales": { "get": { "summary": "销售汇总", "parameters": [ { "in": "query", "name": "startDate", "schema": { "type": "string", "format": "date" } }, { "in": "query", "name": "endDate", "schema": { "type": "string", "format": "date" } }, { "in": "query", "name": "groupBy", "schema": { "type": "string", "enum": ["day","month","product","customer"] } } ], "responses": { "200": { "description": "统计结果" } } } },
+    "/api/stats/products/top": { "get": { "summary": "畅销产品排行", "parameters": [ { "in": "query", "name": "limit", "schema": { "type": "integer" } } ], "responses": { "200": { "description": "排行列表" } } } },
+    "/api/stats/customers/top": { "get": { "summary": "消费客户排行", "parameters": [ { "in": "query", "name": "limit", "schema": { "type": "integer" } } ], "responses": { "200": { "description": "排行列表" } } } },
+    "/api/ai/chat": { "post": { "summary": "AI 对话", "requestBody": { "required": true, "content": { "application/json": { "schema": { "type": "object", "properties": { "customerId": { "type": "integer" }, "message": { "type": "string" }, "context": { "type": "object" } } } } } }, "responses": { "200": { "description": "AI 回复" } } } }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": { "type": "http", "scheme": "bearer", "bearerFormat": "JWT" }
+    },
+    "schemas": {
+      "AuthRequest": { "type": "object", "properties": { "username": { "type": "string" }, "password": { "type": "string" } } },
+      "AuthResponse": { "type": "object", "properties": { "token": { "type": "string" }, "expires_in": { "type": "integer" }, "user": { "type": "object" } } },
+      "Customer": { "type": "object", "properties": { "id": { "type": "integer" }, "name": { "type": "string" }, "type": { "type": "string" }, "contact": { "type": "string" }, "phone": { "type": "string" }, "address": { "type": "string" }, "created_at": { "type": "string", "format": "date-time" } } },
+      "CustomerCreate": { "type": "object", "required": ["name"], "properties": { "name": { "type": "string" }, "type": { "type": "string" }, "contact": { "type": "string" }, "phone": { "type": "string" }, "address": { "type": "string" } } },
+      "Product": { "type": "object", "properties": { "id": { "type": "integer" }, "name": { "type": "string" }, "sku": { "type": "string" }, "category": { "type": "string" }, "unit": { "type": "string" }, "price": { "type": "number", "format": "double" }, "hazard": { "type": "boolean" }, "description": { "type": "string" }, "createdAt": { "type": "string", "format": "date-time" } } },
+      "ProductCreate": { "type": "object", "required": ["name","sku"], "properties": { "name": { "type": "string" }, "sku": { "type": "string" }, "category": { "type": "string" }, "unit": { "type": "string" }, "price": { "type": "number" }, "hazard": { "type": "boolean" }, "description": { "type": "string" } } },
+      "OrderCreate": { "type": "object", "required": ["customerId","items"], "properties": { "customerId": { "type": "integer" }, "items": { "type": "array", "items": { "$ref": "#/components/schemas/OrderItem" } }, "paymentType": { "type": "string" }, "delivery": { "type": "object" } } },
+      "OrderItem": { "type": "object", "properties": { "productId": { "type": "integer" }, "qty": { "type": "integer" }, "price": { "type": "number" } } },
+      "InventoryIn": { "type": "object", "required": ["productId","qty"], "properties": { "productId": { "type": "integer" }, "qty": { "type": "integer" }, "batch": { "type": "string" }, "expireAt": { "type": "string", "format": "date" }, "type": { "type": "string" }, "operatorId": { "type": "integer" } } },
+      "InventoryOut": { "type": "object", "required": ["productId","qty"], "properties": { "productId": { "type": "integer" }, "qty": { "type": "integer" }, "operatorId": { "type": "integer" }, "note": { "type": "string" } } },
+      "InventoryAdjust": { "type": "object", "required": ["productId","qty"], "properties": { "productId": { "type": "integer" }, "qty": { "type": "integer" }, "note": { "type": "string" } } },
+      "LoginRequest": { "type": "object", "properties": { "username": { "type": "string" }, "password": { "type": "string" } }, "required": ["username","password"] },
+      "TokenResponse": { "type": "object", "properties": { "token": { "type": "string" }, "expires_in": { "type": "integer" }, "user": { "type": "object" } } },
+      "AIChatRequest": { "type": "object", "properties": { "customerId": { "type": "integer" }, "message": { "type": "string" }, "context": { "type": "object" } } },
+      "AIChatResponse": { "type": "object", "properties": { "reply": { "type": "string" }, "source": { "type": "string" }, "confidence": { "type": "number" }, "suggestedProducts": { "type": "array", "items": { "$ref": "#/components/schemas/Product" } } } }
+    }
+  }
+}

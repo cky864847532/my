@@ -1,0 +1,89 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "diffs": {
+        "name": {
+          "before": "å®³è«æ§å¶A",
+          "after": "害虫控制A"
+        },
+        "description": {
+          "before": "æææå A",
+          "after": "有效成分 A"
+        },
+        "sku": {
+          "before": "P001",
+          "after": null
+        },
+        "category": {
+          "before": "insecticide",
+          "after": null
+        },
+        "unit": {
+          "before": "bottle",
+          "after": null
+        }
+      }
+    },
+    {
+      "id": 2,
+      "diffs": {
+        "name": {
+          "before": "é¤èåB",
+          "after": "除草剂B"
+        },
+        "description": {
+          "before": "æææå B",
+          "after": "有效成分 B"
+        },
+        "sku": {
+          "before": "P002",
+          "after": null
+        },
+        "category": {
+          "before": "herbicide",
+          "after": null
+        },
+        "unit": {
+          "before": "bag",
+          "after": null
+        }
+      }
+    },
+    {
+      "id": 3,
+      "diffs": {
+        "missing_after": {
+          "id": 3,
+          "name": "AutoProduct",
+          "sku": "AUT-001",
+          "category": "test",
+          "unit": "pcs",
+          "price": 12.5,
+          "hazard": false,
+          "description": "Created by automated test",
+          "createdat": "2025-12-25T12:19:44.451083"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "diffs": {
+        "missing_after": {
+          "id": 4,
+          "name": "AutoProduct",
+          "sku": "AUT-001",
+          "category": "test",
+          "unit": "pcs",
+          "price": 9.99,
+          "hazard": false,
+          "description": "Created by automated test",
+          "createdat": "2025-12-25T12:26:38.350385"
+        }
+      }
+    }
+  ],
+  "orders": [],
+  "inventory_records": [],
+  "ai_chats": []
+}

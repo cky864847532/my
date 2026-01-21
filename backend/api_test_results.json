@@ -1,0 +1,174 @@
+{
+    "product-get":  {
+                        "status":  null,
+                        "content":  {
+                                        "id":  4,
+                                        "name":  "AutoProduct",
+                                        "sku":  "AUT-001",
+                                        "category":  "test",
+                                        "unit":  "pcs",
+                                        "price":  9.99,
+                                        "hazard":  false,
+                                        "description":  "Created by automated test",
+                                        "createdAt":  "2025-12-25T12:26:38.350385"
+                                    }
+                    },
+    "stats-sales":  {
+                        "status":  null,
+                        "content":  {
+                                        "items":  {
+
+                                                  },
+                                        "total":  0
+                                    }
+                    },
+    "order-get":  {
+                      "status":  null,
+                      "content":  {
+                                      "id":  2,
+                                      "orderNo":  null,
+                                      "customerId":  1,
+                                      "totalAmount":  25.0,
+                                      "status":  "å·²åå»º",
+                                      "createdAt":  "2025-12-25T12:26:38.519777",
+                                      "items":  null
+                                  }
+                  },
+    "inventory-in":  {
+                         "status":  null,
+                         "content":  {
+                                         "id":  4
+                                     }
+                     },
+    "order-create":  {
+                         "status":  null,
+                         "content":  {
+                                         "orderId":  2
+                                     }
+                     },
+    "inventory-detail":  {
+                             "status":  null,
+                             "content":  {
+                                             "value":  [
+                                                           {
+                                                               "id":  4,
+                                                               "productId":  4,
+                                                               "qty":  100,
+                                                               "batch":  "BATCH1",
+                                                               "expireAt":  "2026-12-31",
+                                                               "type":  "å\u0085¥åº",
+                                                               "operatorId":  1,
+                                                               "note":  "test stock in",
+                                                               "createdAt":  "2025-12-25T12:26:38.472595"
+                                                           }
+                                                       ],
+                                             "Count":  1
+                                         }
+                         },
+    "product-create":  {
+                           "status":  null,
+                           "content":  {
+                                           "id":  4
+                                       }
+                       },
+    "product-price":  {
+                          "status":  null,
+                          "content":  null
+                      },
+    "order-list":  {
+                       "status":  null,
+                       "content":  {
+                                       "value":  [
+                                                     {
+                                                         "id":  1,
+                                                         "orderNo":  null,
+                                                         "customerId":  1,
+                                                         "totalAmount":  25.0,
+                                                         "status":  "å·²åå»º",
+                                                         "createdAt":  "2025-12-25T12:19:44.746286",
+                                                         "items":  null
+                                                     },
+                                                     {
+                                                         "id":  2,
+                                                         "orderNo":  null,
+                                                         "customerId":  1,
+                                                         "totalAmount":  25.0,
+                                                         "status":  "å·²åå»º",
+                                                         "createdAt":  "2025-12-25T12:26:38.519777",
+                                                         "items":  null
+                                                     }
+                                                 ],
+                                       "Count":  2
+                                   }
+                   },
+    "inventory-adjust":  {
+                             "status":  null,
+                             "content":  null
+                         },
+    "ai-chat":  {
+                    "status":  null,
+                    "content":  {
+                                    "confidence":  0.9,
+                                    "source":  "deepseek",
+                                    "reply":  "ï¼ç¤ºä¾åå¤ï¼å»ºè®®æè¯´æç¨éä½¿ç¨ã"
+                                }
+                },
+    "product-list":  {
+                         "status":  null,
+                         "content":  {
+                                         "value":  [
+                                                       {
+                                                           "id":  1,
+                                                           "name":  "å®³è«æ§å¶A",
+                                                           "sku":  "P001",
+                                                           "category":  "insecticide",
+                                                           "unit":  "bottle",
+                                                           "price":  120.5,
+                                                           "hazard":  true,
+                                                           "description":  "æææå A",
+                                                           "createdAt":  "2025-12-25T12:15:09.118103"
+                                                       },
+                                                       {
+                                                           "id":  2,
+                                                           "name":  "é¤èåB",
+                                                           "sku":  "P002",
+                                                           "category":  "herbicide",
+                                                           "unit":  "bag",
+                                                           "price":  80.0,
+                                                           "hazard":  false,
+                                                           "description":  "æææå B",
+                                                           "createdAt":  "2025-12-25T12:15:09.118103"
+                                                       },
+                                                       {
+                                                           "id":  3,
+                                                           "name":  "AutoProduct",
+                                                           "sku":  "AUT-001",
+                                                           "category":  "test",
+                                                           "unit":  "pcs",
+                                                           "price":  12.5,
+                                                           "hazard":  false,
+                                                           "description":  "Created by automated test",
+                                                           "createdAt":  "2025-12-25T12:19:44.451083"
+                                                       },
+                                                       {
+                                                           "id":  4,
+                                                           "name":  "AutoProduct",
+                                                           "sku":  "AUT-001",
+                                                           "category":  "test",
+                                                           "unit":  "pcs",
+                                                           "price":  9.99,
+                                                           "hazard":  false,
+                                                           "description":  "Created by automated test",
+                                                           "createdAt":  "2025-12-25T12:26:38.350385"
+                                                       }
+                                                   ],
+                                         "Count":  4
+                                     }
+                     },
+    "inventory-out":  {
+                          "status":  null,
+                          "content":  {
+                                          "id":  5
+                                      }
+                      }
+}

@@ -1,0 +1,37 @@
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/root?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:}
+  sql:
+    init:
+      encoding: UTF-8
+      mode: never
+  security:
+    user:
+      name: user
+      password: testpass
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+logging:
+  level:
+    root: INFO
+    com.taizhou.kailv.api: DEBUG
+
+server:
+  port: ${PORT:8080}
+
+app:
+  cors:
+    # Comma-separated list, e.g. "http://localhost:5173,https://<user>.github.io"
+    # Use "*" to allow all origins (demo only).
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:*}
+
+# AI/DeepSeek 配置
+ai:
+  deepseek:
+    api-key: ${DEEPSEEK_API_KEY:}
+    base-url: ${DEEPSEEK_BASE_URL:https://api.deepseek.com}
+    model: ${DEEPSEEK_MODEL:deepseek-chat}

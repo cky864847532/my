@@ -1,0 +1,152 @@
+{
+    "product-get": {
+        "status": null,
+        "content": {
+            "id": 3,
+            "name": "AutoProduct",
+            "sku": "AUT-001",
+            "category": "test",
+            "unit": "pcs",
+            "price": 9.99,
+            "hazard": false,
+            "description": "Created by automated test",
+            "createdAt": "2025-12-25T12:19:44.451083"
+        }
+    },
+    "stats-sales": {
+        "status": null,
+        "content": {
+            "items": {},
+            "total": 0
+        }
+    },
+    "order-get": {
+        "status": null,
+        "content": {
+            "id": 1,
+            "orderNo": null,
+            "customerId": 1,
+            "totalAmount": 25.0,
+            "status": "已创建",
+            "createdAt": "2025-12-25T12:19:44.746286",
+            "items": null
+        }
+    },
+    "inventory-in": {
+        "status": null,
+        "content": {
+            "id": 1
+        }
+    },
+    "order-create": {
+        "status": null,
+        "content": {
+            "orderId": 1
+        }
+    },
+    "inventory-detail": {
+        "status": null,
+        "content": {
+            "value": [
+                {
+                    "id": 1,
+                    "productId": 3,
+                    "qty": 100,
+                    "batch": "BATCH1",
+                    "expireAt": "2026-12-31",
+                    "type": "入库",
+                    "operatorId": 1,
+                    "note": "test stock in",
+                    "createdAt": "2025-12-25T12:19:44.66255"
+                }
+            ],
+            "Count": 1
+        }
+    },
+    "product-create": {
+        "status": null,
+        "content": {
+            "id": 3
+        }
+    },
+    "product-price": {
+        "status": null,
+        "content": null
+    },
+    "order-list": {
+        "status": null,
+        "content": {
+            "value": [
+                {
+                    "id": 1,
+                    "orderNo": null,
+                    "customerId": 1,
+                    "totalAmount": 25.0,
+                    "status": "已创建",
+                    "createdAt": "2025-12-25T12:19:44.746286",
+                    "items": null
+                }
+            ],
+            "Count": 1
+        }
+    },
+    "inventory-adjust": {
+        "status": null,
+        "content": null
+    },
+    "ai-chat": {
+        "status": null,
+        "content": {
+            "confidence": 0.9,
+            "source": "deepseek",
+            "reply": "（示例回复）建议按说明稀释使用。"
+        }
+    },
+    "product-list": {
+        "status": null,
+        "content": {
+            "value": [
+                {
+                    "id": 1,
+                    "name": "害虫控制A",
+                    "sku": "P001",
+                    "category": "insecticide",
+                    "unit": "bottle",
+                    "price": 120.5,
+                    "hazard": true,
+                    "description": "有效成分 A",
+                    "createdAt": "2025-12-25T12:15:09.118103"
+                },
+                {
+                    "id": 2,
+                    "name": "除草剂B",
+                    "sku": "P002",
+                    "category": "herbicide",
+                    "unit": "bag",
+                    "price": 80.0,
+                    "hazard": false,
+                    "description": "有效成分 B",
+                    "createdAt": "2025-12-25T12:15:09.118103"
+                },
+                {
+                    "id": 3,
+                    "name": "AutoProduct",
+                    "sku": "AUT-001",
+                    "category": "test",
+                    "unit": "pcs",
+                    "price": 9.99,
+                    "hazard": false,
+                    "description": "Created by automated test",
+                    "createdAt": "2025-12-25T12:19:44.451083"
+                }
+            ],
+            "Count": 3
+        }
+    },
+    "inventory-out": {
+        "status": null,
+        "content": {
+            "id": 2
+        }
+    }
+}

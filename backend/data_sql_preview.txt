@@ -1,0 +1,8 @@
+﻿INSERT INTO customers (name, type, contact, phone, address, created_at) VALUES
+('绀轰緥鍐滃満', '缁忛攢鍟?, '寮犱笁', '13800000000', '鍙板窞绀轰緥鍦板潃', NOW());
+
+INSERT INTO products (name, sku, category, unit, price, hazard, description, created_at) VALUES
+('PestControlA', 'P001', 'insecticide', 'bottle', 120.50, TRUE, 'active A', NOW()),
+('HerbicideB', 'P002', 'herbicide', 'bag', 80.00, FALSE, 'active B', NOW());
+
+

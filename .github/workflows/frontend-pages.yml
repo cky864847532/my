@@ -1,0 +1,68 @@
+name: Deploy Frontend to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - "frontend/**"
+      - ".github/workflows/frontend-pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION: "22.12.0"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install
+        working-directory: frontend
+        run: npm ci
+
+      - name: Build
+        working-directory: frontend
+        env:
+          # GitHub Pages project site base path: /<repo-name>/
+          BASE_PATH: /${{ github.event.repository.name }}/
+          # Set this in repo Settings -> Secrets and variables -> Actions -> Variables (or Secrets)
+          # Example: https://your-backend.onrender.com
+          VITE_API_BASE: ${{ vars.VITE_API_BASE }}
+        run: npm run build
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: frontend/dist
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

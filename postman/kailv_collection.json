@@ -1,0 +1,54 @@
+{
+  "info": {
+    "name": "Kailv API",
+    "_postman_id": "kailv-collection-001",
+    "description": "简单 Postman 集合，包含认证、客户、产品、订单和AI对话接口示例",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [{"key":"Content-Type","value":"application/json"}],
+        "body": {"mode":"raw","raw": "{\n  \"username\": \"admin\",\n  \"password\": \"password123\"\n}"},
+        "url": {"raw":"http://localhost:8080/api/auth/login","host":["http://localhost:8080"],"path":["api","auth","login"]}
+      }
+    },
+    {
+      "name": "List Customers",
+      "request": {
+        "method": "GET",
+        "header": [{"key":"Authorization","value":"Bearer {{token}}"}],
+        "url": {"raw":"http://localhost:8080/api/customers","host":["http://localhost:8080"],"path":["api","customers"]}
+      }
+    },
+    {
+      "name": "Create Customer",
+      "request": {
+        "method": "POST",
+        "header": [{"key":"Content-Type","value":"application/json"},{"key":"Authorization","value":"Bearer {{token}}"}],
+        "body": {"mode":"raw","raw":"{\n  \"name\": \"示例农场\",\n  \"type\": \"经销商\",\n  \"contact\": \"张三\",\n  \"phone\": \"13800000000\"\n}"},
+        "url": {"raw":"http://localhost:8080/api/customers","host":["http://localhost:8080"],"path":["api","customers"]}
+      }
+    },
+    {
+      "name": "Create Order",
+      "request": {
+        "method": "POST",
+        "header": [{"key":"Content-Type","value":"application/json"},{"key":"Authorization","value":"Bearer {{token}}"}],
+        "body": {"mode":"raw","raw":"{\n  \"customerId\": 1,\n  \"items\": [ {\"productId\":1, \"qty\":10, \"price\":120.5} ]\n}"},
+        "url": {"raw":"http://localhost:8080/api/orders","host":["http://localhost:8080"],"path":["api","orders"]}
+      }
+    },
+    {
+      "name": "AI Chat",
+      "request": {
+        "method": "POST",
+        "header": [{"key":"Content-Type","value":"application/json"}],
+        "body": {"mode":"raw","raw":"{\n  \"customerId\": 1,\n  \"message\": \"这款药怎么用？\"\n}"},
+        "url": {"raw":"http://localhost:8080/api/ai/chat","host":["http://localhost:8080"],"path":["api","ai","chat"]}
+      }
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+[{"id":1,"name":"害虫控制A","sku":"P001","category":"insecticide","unit":"bottle","price":120.5,"hazard":true,"description":"有效成分 A","createdAt":"2025-12-25T12:15:09.118103"},{"id":2,"name":"除草剂B","sku":"P002","category":"herbicide","unit":"bag","price":80.0,"hazard":false,"description":"有效成分 B","createdAt":"2025-12-25T12:15:09.118103"}]
