@@ -19,7 +19,7 @@ export async function refreshToken() {
     })
     .catch(() => {
       userStore.logout();
-      window.location.href = `${import.meta.env.BASE_URL}#/home`;
+      window.location.href = `${import.meta.env.BASE_URL}#/login`;
       return null;
     })
     .finally(() => {
